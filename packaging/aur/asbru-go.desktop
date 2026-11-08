@@ -9,5 +9,5 @@ Icon=asbru-go
 Terminal=false
 StartupNotify=true
 StartupWMClass=asbru
-Categories=Utility;TerminalEmulator;System;
+Categories=Utility;TerminalEmulator;
 Keywords=ssh;sftp;rdp;vnc;telnet;mosh;terminal;connection;

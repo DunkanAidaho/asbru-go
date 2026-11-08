@@ -8,3 +8,8 @@
 *.sw?
 *.*~
 .DS_Store
+
+# AUR build artifacts
+packaging/aur/pkg/
+packaging/aur/src/
+packaging/aur/*.pkg.tar.*

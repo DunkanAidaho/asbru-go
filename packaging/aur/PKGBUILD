@@ -20,14 +20,16 @@ provides=('asbru-cm')
 source=("$pkgname-$pkgver.tar.gz::$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz"
         'asbru-go.desktop')
 sha256sums=('8fbacd1784b03f697c2af959deebd612fa2db47980cda71d467f1ca51fd2d27b'
-            'b47013bf73eb4cc0987bd66a50471fbc26f75923df4daab94711a5d4e53dcf30')
+            'e0a4257a076cb8f881057baf65e0dce70098a108fbf1fbb7474ed492b6464882')
 
 build() {
   cd "$pkgname-$pkgver"
   mkdir -p "$srcdir/gocache" "$srcdir/gotmp"
   export GOCACHE="$srcdir/gocache"
   export GOTMPDIR="$srcdir/gotmp"
-  go build -trimpath -ldflags '-s -w' -o asbru ./cmd/asbru
+  go build -buildmode=pie -trimpath \
+    -ldflags '-s -w -linkmode=external -extldflags "-Wl,-z,relro,-z,now"' \
+    -o asbru ./cmd/asbru
   make i18n LRELEASE=lrelease6
 }
 
