@@ -21,7 +21,7 @@ import (
 )
 
 // Version — версия Go-порта (не совпадает с версией Perl проекта).
-const Version = "0.1.0"
+const Version = "0.1.1"
 
 // runGUI — инжектируемый запуск GUI (тесты подменяют).
 var runGUI = func(cfgPath string, start ui.Startup) error { return ui.RunWithStartup(cfgPath, start) }

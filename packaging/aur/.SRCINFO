@@ -1,6 +1,6 @@
 pkgbase = asbru-go
 	pkgdesc = Ásbrú Connection Manager — Go/Qt6 rewrite of the GTK/Perl connection manager
-	pkgver = 0.1.0
+	pkgver = 0.1.1
 	pkgrel = 1
 	url = https://github.com/DunkanAidaho/asbru-go
 	arch = x86_64
@@ -22,7 +22,7 @@ pkgbase = asbru-go
 	optdepends = tigervnc: external VNC viewer
 	optdepends = rdesktop: external RDP viewer
 	optdepends = xdg-utils: open screenshots with an external viewer
-	source = asbru-go-0.1.0.tar.gz::https://github.com/DunkanAidaho/asbru-go/releases/download/v0.1.0/asbru-go-0.1.0.tar.gz
+	source = asbru-go-0.1.1.tar.gz::https://github.com/DunkanAidaho/asbru-go/releases/download/v0.1.1/asbru-go-0.1.1.tar.gz
 	source = asbru-go.desktop
 	sha256sums = 8fbacd1784b03f697c2af959deebd612fa2db47980cda71d467f1ca51fd2d27b
 	sha256sums = fea83e57db0edea90b3dee3c41c0ee1b8a940dd7725408363a73b676ae6f8dda

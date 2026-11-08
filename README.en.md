@@ -6,7 +6,7 @@
 
 [Русский](README.md) | **English**
 
-> **Status: v0.1.0 — first public release.** This is a Go + Qt6 rewrite of
+> **Status: v0.1.1 — current release.** This is a Go + Qt6 rewrite of
 > [Ásbrú Connection Manager](https://github.com/asbru-cm/asbru-cm) (formerly PAC
 > Manager). The original application is written in Perl/GTK3; this project keeps
 > its configuration format and workflow while replacing the implementation.
@@ -32,9 +32,11 @@ A significant part of this project's code was written by large language models
 bugs are possible. If you find a problem, please open an issue:
 <https://github.com/DunkanAidaho/asbru-go/issues>.
 
-The **v0.1.0** release focuses on RDP: an embedded FreeRDP client with drive
-redirection, fullscreen and audio. See the
-[release notes](https://github.com/DunkanAidaho/asbru-go/releases/tag/v0.1.0)
+The first release, **v0.1.0**, focused on RDP: an embedded FreeRDP client with
+drive redirection, fullscreen and audio. The current **v0.1.1** release is
+documentation and packaging: the `asbru-go` binary (installs alongside
+asbru-cm) and a bilingual README. See the
+[release notes](https://github.com/DunkanAidaho/asbru-go/releases/tag/v0.1.1)
 for details.
 
 ## Features

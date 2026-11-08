@@ -1,14 +1,19 @@
 # Changelog
 
-## Unreleased
+## v0.1.1 — 2026-11-08
+
+Documentation and packaging release. No functional code changes.
 
 ### Changed
 
 - Documentation: bilingual README — Russian by default (`README.md`), English
-  translation (`README.en.md`).
+  translation (`README.en.md`); add icon header, project motivation and the
+  LLM/vibe-coding disclaimer.
 - Packaging: the installed binary is now `asbru-go` (instead of `asbru`), so the
   package can coexist with `asbru-cm`; the desktop entry uses
-  `StartupWMClass=asbru-go`.
+  `Exec=asbru-go gui` and `StartupWMClass=asbru-go`.
+- Packaging: drop `conflicts`/`provides` for `asbru-cm`; regenerate `.SRCINFO`.
+- Version: `asbru-go version` now reports `0.1.1`.
 
 ## v0.1.0 — 2026-11-08
 
