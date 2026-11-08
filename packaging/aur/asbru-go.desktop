@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Ásbrú Connection Manager (Go)
+GenericName=Connection Manager
+Comment=Remote terminal sessions and automation — Go/Qt6 port
+Exec=asbru gui
+Icon=asbru-go
+Terminal=false
+StartupNotify=true
+StartupWMClass=asbru
+Categories=Utility;TerminalEmulator;System;
+Keywords=ssh;sftp;rdp;vnc;telnet;mosh;terminal;connection;

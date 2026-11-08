@@ -1,0 +1,48 @@
+# Maintainer: Dunkan Aidaho <dacent211@yandex.ru>
+pkgname=asbru-go
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Ásbrú Connection Manager — Go/Qt6 rewrite of the GTK/Perl connection manager"
+arch=('x86_64' 'aarch64')
+url="https://github.com/DunkanAidaho/asbru-go"
+license=('GPL-3.0-or-later')
+depends=('glibc' 'gcc-libs' 'qt6-base' 'qtermwidget' 'freerdp' 'libvncserver' 'hicolor-icon-theme')
+makedepends=('go' 'gcc' 'pkgconf' 'qt6-tools')
+optdepends=(
+  'openssh: SSH and SFTP sessions'
+  'mosh: MOSH sessions'
+  'tigervnc: external VNC viewer'
+  'rdesktop: external RDP viewer'
+  'xdg-utils: open screenshots with an external viewer'
+)
+conflicts=('asbru-cm')
+provides=('asbru-cm')
+source=("$pkgname-$pkgver.tar.gz::$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz"
+        'asbru-go.desktop')
+sha256sums=('8fbacd1784b03f697c2af959deebd612fa2db47980cda71d467f1ca51fd2d27b'
+            'b47013bf73eb4cc0987bd66a50471fbc26f75923df4daab94711a5d4e53dcf30')
+
+build() {
+  cd "$pkgname-$pkgver"
+  mkdir -p "$srcdir/gocache" "$srcdir/gotmp"
+  export GOCACHE="$srcdir/gocache"
+  export GOTMPDIR="$srcdir/gotmp"
+  go build -trimpath -ldflags '-s -w' -o asbru ./cmd/asbru
+  make i18n LRELEASE=lrelease6
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  install -Dm755 asbru "$pkgdir/usr/bin/asbru"
+  install -Dm644 "$srcdir/asbru-go.desktop" "$pkgdir/usr/share/applications/asbru-go.desktop"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 NOTICE "$pkgdir/usr/share/licenses/$pkgname/NOTICE"
+
+  local s
+  for s in 16 24 32 48 64 128 256 512; do
+    install -Dm644 "internal/ui/assets/asbru-icon-$s.png" \
+      "$pkgdir/usr/share/icons/hicolor/${s}x${s}/apps/asbru-go.png"
+  done
+
+  install -Dm644 i18n/asbru_ru.qm "$pkgdir/usr/share/asbru/i18n/asbru_ru.qm"
+}

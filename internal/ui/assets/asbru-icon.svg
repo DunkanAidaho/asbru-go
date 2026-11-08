@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs><clipPath id="tile"><rect width="512" height="512" rx="112"/></clipPath></defs>
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="#0B0F14"/>
+    <g fill="none" stroke-linecap="round" stroke-width="22">
+      <path d="M 56 360 A 200 200 0 0 1 456 360" stroke="#FF5A5F"/>
+      <path d="M 88 360 A 168 168 0 0 1 424 360" stroke="#FFB020"/>
+      <path d="M 120 360 A 136 136 0 0 1 392 360" stroke="#2FBF71"/>
+      <path d="M 152 360 A 104 104 0 0 1 360 360" stroke="#2E90FA"/>
+    </g>
+    <path d="M 172 254 H 340 Q 360 254 360 274 V 392 H 286 V 412 Q 286 424 274 424 H 238 Q 226 424 226 412 V 392 H 152 Q 152 392 152 392 V 274 Q 152 254 172 254 Z"
+          fill="#0B0F14" stroke="#F2F5F8" stroke-width="20" stroke-linejoin="round"/>
+    <g fill="none" stroke="#F2F5F8" stroke-width="13" stroke-linejoin="round">
+      <rect x="186" y="286" width="140" height="50" rx="9" fill="#0B0F14"/>
+    </g>
+    <g fill="#FFC53D">
+      <rect x="196" y="299" width="10" height="24" rx="3"/>
+      <rect x="212" y="299" width="10" height="24" rx="3"/>
+      <rect x="228" y="299" width="10" height="24" rx="3"/>
+      <rect x="244" y="299" width="10" height="24" rx="3"/>
+      <rect x="260" y="299" width="10" height="24" rx="3"/>
+      <rect x="276" y="299" width="10" height="24" rx="3"/>
+      <rect x="292" y="299" width="10" height="24" rx="3"/>
+      <rect x="308" y="299" width="10" height="24" rx="3"/>
+    </g>
+  </g>
+</svg>

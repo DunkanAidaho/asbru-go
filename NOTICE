@@ -1,0 +1,20 @@
+asbru-go — Ásbrú Connection Manager (Go/Qt6 rewrite)
+
+Copyright (C) 2026 Dunkan Aidaho
+
+This program is a modified work derived from Ásbrú Connection Manager
+(asbru-cm, https://github.com/asbru-cm/asbru-cm), which is licensed under the
+GNU General Public License, version 3 or later.
+
+Upstream copyright notices:
+
+  Copyright (C) 2017-2022 Ásbrú Connection Manager team (https://asbru-cm.net)
+  Copyright (C) 2010-2016 David Torrejon Vaquerizas
+
+Modifications: the user interface and session handling were rewritten in Go
+with Qt6; the asbru.yml configuration format and legacy encryption scheme are
+kept for compatibility. This notice is the statement of modification required
+by GPLv3 §5(a).
+
+The complete corresponding source of this version is the repository containing
+this file. See LICENSE for the full license text.

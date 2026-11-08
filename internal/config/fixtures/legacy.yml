@@ -1,0 +1,101 @@
+# Синтетическая легаси-фикстура (без реальных данных):
+# шифрованные значения получены живьём из Crypt::CBC 3.07 (фраза из lib/PACUtils.pm:146).
+defaults:
+  version: 999.0.0-test
+  config version: 2
+  gui password: 53616c7465645f5f4e61bc00000000005c4aa135f78c9e29
+  use gui password: 0
+  sudo password: 53616c7465645f5f4e61bc00000000005c4aa135f78c9e29
+  proxy ip: ""
+  proxy port: ""
+  proxy user: ""
+  proxy pass: ""
+  jump ip: ""
+  jump port: 22
+  jump user: ""
+  jump pass: ""
+  jump key: ""
+  keepass:
+    use_keepass: 0
+    database: ""
+    pathcli: ""
+    keyfile: ""
+    password: 53616c7465645f5f4e61bc00000000005c4aa135f78c9e29
+  global variables:
+    myvar:
+      type: string
+      value: hello
+      hidden: 0
+  unknown-defaults-key: keep-me
+config version: 2
+config version change: "2026-08-26"
+environments:
+  aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa:
+    name: Test SSH
+    description: "тестовый сервер — русский текст"
+    parent: __PAC__ROOT__
+    title: SSH Test
+    ip: 10.0.0.1
+    port: "22"
+    user: root
+    pass: 53616c7465645f5f4e61bc0000000000d47e78ebe0e7b327
+    search pass on KPX: 0
+    KPX title regexp: ""
+    method: SSH
+    auth type: publickey
+    auth fallback: ""
+    public key: /home/test/.ssh/id_rsa
+    passphrase user: ""
+    passphrase: 53616c7465645f5f4e61bc00000000005c4aa135f78c9e29
+    options: " -o ServerAliveInterval=5 -g 1920x1080"
+    use proxy: 0
+    proxy ip: ""
+    proxy port: ""
+    proxy user: ""
+    proxy pass: ""
+    save session logs: 0
+    session log pattern: ""
+    session logs folder: ""
+    session logs amount: 5
+    use prepend command: 0
+    prepend command: ""
+    use postpend command: 0
+    postpend command: ""
+    quote command: 0
+    quotepost command: 0
+    send string active: 0
+    send string txt: ""
+    send string intro: ""
+    send string every: 3
+    send string only when idle: 0
+    embed: 0
+    mac: ""
+    autoreconnect: 0
+    remove control chars: 0
+    startup launch: 0
+    startup script: ""
+    startup script name: ""
+    favourite: 0
+    autossh: 0
+    cluster: 0
+    use sudo: 0
+    variables: []
+    screenshots: []
+    local before: []
+    expect: []
+    local connected: []
+    macros: []
+    local after: []
+    terminal options:
+      change background color on idle: 0
+    unknown-conn-key: also-kept
+  bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb:
+    name: Servers
+    parent: __PAC__ROOT__
+    _is_group: 1
+    children:
+      aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa: 1
+  __PAC_SHELL__:
+    name: Local Shell
+    parent: __PAC__ROOT__
+    method: Local Shell

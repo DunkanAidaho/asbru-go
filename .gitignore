@@ -1,0 +1,10 @@
+/asbru
+/.gocache/
+/.gomodcache/
+/.gotmp/
+/i18n/*.qm
+
+# editor / OS noise
+*.sw?
+*.*~
+.DS_Store
