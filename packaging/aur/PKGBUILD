@@ -19,7 +19,7 @@ optdepends=(
 )
 source=("$pkgname-$pkgver.tar.gz::$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz"
         'asbru-go.desktop')
-sha256sums=('8fbacd1784b03f697c2af959deebd612fa2db47980cda71d467f1ca51fd2d27b'
+sha256sums=('fa4db8eaf3ffdf1ca4c24dcb89114792d6f9f4bdb43243f245a2f3eda288fa00'
             'fea83e57db0edea90b3dee3c41c0ee1b8a940dd7725408363a73b676ae6f8dda')
 
 build() {
