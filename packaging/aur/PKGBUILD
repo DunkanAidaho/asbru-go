@@ -1,4 +1,6 @@
 # Maintainer: Dunkan Aidaho <dacent211@yandex.ru>
+# Installs the binary as asbru-go, so it can coexist with asbru-cm. Both
+# applications share ~/.config/asbru for configuration compatibility.
 pkgname=asbru-go
 pkgver=0.1.0
 pkgrel=1
@@ -15,12 +17,10 @@ optdepends=(
   'rdesktop: external RDP viewer'
   'xdg-utils: open screenshots with an external viewer'
 )
-conflicts=('asbru-cm')
-provides=('asbru-cm')
 source=("$pkgname-$pkgver.tar.gz::$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz"
         'asbru-go.desktop')
 sha256sums=('8fbacd1784b03f697c2af959deebd612fa2db47980cda71d467f1ca51fd2d27b'
-            'e0a4257a076cb8f881057baf65e0dce70098a108fbf1fbb7474ed492b6464882')
+            'fea83e57db0edea90b3dee3c41c0ee1b8a940dd7725408363a73b676ae6f8dda')
 
 build() {
   cd "$pkgname-$pkgver"
@@ -29,13 +29,13 @@ build() {
   export GOTMPDIR="$srcdir/gotmp"
   go build -buildmode=pie -trimpath \
     -ldflags '-s -w -linkmode=external -extldflags "-Wl,-z,relro,-z,now"' \
-    -o asbru ./cmd/asbru
+    -o asbru-go ./cmd/asbru
   make i18n LRELEASE=lrelease6
 }
 
 package() {
   cd "$pkgname-$pkgver"
-  install -Dm755 asbru "$pkgdir/usr/bin/asbru"
+  install -Dm755 asbru-go "$pkgdir/usr/bin/asbru-go"
   install -Dm644 "$srcdir/asbru-go.desktop" "$pkgdir/usr/share/applications/asbru-go.desktop"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 NOTICE "$pkgdir/usr/share/licenses/$pkgname/NOTICE"

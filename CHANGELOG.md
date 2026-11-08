@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Documentation: bilingual README — Russian by default (`README.md`), English
+  translation (`README.en.md`).
+- Packaging: the installed binary is now `asbru-go` (instead of `asbru`), so the
+  package can coexist with `asbru-cm`; the desktop entry uses
+  `StartupWMClass=asbru-go`.
+
 ## v0.1.0 — 2026-11-08
 
 First public release of the Go/Qt6 rewrite of Ásbrú Connection Manager.

@@ -1,74 +1,107 @@
-# asbru-go — Ásbrú Connection Manager (Go/Qt6 rewrite)
+<p align="center">
+  <img src="internal/ui/assets/asbru-icon-256.png" width="128" height="128" alt="Иконка asbru-go">
+</p>
 
-> **Status: v0.1.0 — first public release.** This is a Go + Qt6 rewrite of
-> [Ásbrú Connection Manager](https://github.com/asbru-cm/asbru-cm) (formerly PAC
-> Manager). The original application is written in Perl/GTK3; this project keeps
-> its configuration format and workflow while replacing the implementation.
+# asbru-go — Ásbrú Connection Manager на Go/Qt6
 
-Ásbrú Connection Manager is a GUI that helps organize remote terminal sessions
-and automate repetitive tasks. asbru-go provides the same connection tree,
-connection editor, terminal tabs and automation model on top of a Go core and
-Qt6 widgets (via [miqt](https://github.com/mappu/miqt)).
+**Русский** | [English](README.en.md)
 
-## Features
+> **Статус: v0.1.0 — первый публичный релиз.** Это переписанная на Go + Qt6
+> версия [Ásbrú Connection Manager](https://github.com/asbru-cm/asbru-cm)
+> (ранее PAC Manager). Оригинальная программа написана на Perl/GTK3; этот
+> проект сохраняет её формат конфигурации и рабочий процесс, заменяя
+> реализацию.
 
-- **Connection methods:** SSH, SFTP, Telnet, FTP, WebDAV, MOSH, serial (`cu` and
-  remote-tty), IBM 3270/5250, RDP (rdesktop and xfreerdp dialects), VNC,
-  Proxmox VE, generic commands and local shell.
-- **Embedded RDP and VNC viewers:** FreeRDP 3 and libvncclient based, with
-  fullscreen, audio (rdpsnd), clipboard file transfer and RDP drive redirection.
-- **Automation:** Expect-style prompts, reconnects, jump hosts, HTTP/SOCKS
-  proxies, clusters and Power Cluster Management (PCC).
-- **Credentials:** legacy `asbru.yml` encryption, KeePass databases, GUI password
-  and Secret Service integration.
-- **Workflow:** groups/tree, connection editor, preferences, hotkeys,
-  import/export, session logs, wake-on-LAN, startup commands, tray icon, panels.
-- **Legacy compatibility:** reads and writes `asbru.yml` files created by
-  asbru-cm (including encrypted fields); unknown keys are preserved verbatim.
-- **CLI:** `asbru gui`, `asbru version`, `--config-dir`, `--debug`.
+Ásbrú Connection Manager — графический менеджер, который помогает
+упорядочивать удалённые терминальные сессии и автоматизировать повторяющиеся
+задачи. asbru-go предоставляет то же дерево подключений, редактор подключений,
+вкладки терминалов и модель автоматизации на основе ядра на Go и виджетов Qt6
+(через [miqt](https://github.com/mappu/miqt)).
 
-## Build
+## Зачем этот проект
 
-Requirements: Go 1.27+, Qt6 (Widgets), qtermwidget6, FreeRDP 3, libvncclient and
-a C/C++ toolchain for cgo.
+В Linux до сих пор нет современного менеджера подключений, дающего привычный
+опыт работы с удалёнными сессиями: единое дерево, вкладки, автоматизацию и
+встроенные RDP/VNC-клиенты в одном окне. Оригинальный Ásbrú Connection Manager
+(asbru-cm) решает эту задачу и остаётся нашим референсом и источником
+вдохновения. asbru-go — попытка дать этому опыту современную реализацию на Go
+и Qt6, сохранив совместимость с конфигурацией `asbru.yml`.
 
-On Arch Linux:
+## Важно: проект написан с помощью LLM
+
+Значительная часть кода этого проекта создана большими языковыми моделями
+(LLM) — иными словами, это «вайб-кодинг» (vibe coding). Код покрыт тестами,
+но ошибки возможны. Если вы нашли проблему, пожалуйста, создайте issue:
+<https://github.com/DunkanAidaho/asbru-go/issues>.
+
+Релиз **v0.1.0** сфокусирован на RDP: встроенный клиент на FreeRDP с пробросом
+дисков, полноэкранным режимом и звуком. Подробности —
+[в описании релиза](https://github.com/DunkanAidaho/asbru-go/releases/tag/v0.1.0).
+
+## Возможности
+
+- **Методы подключения:** SSH, SFTP, Telnet, FTP, WebDAV, MOSH, последовательный
+  порт (`cu` и remote-tty), IBM 3270/5250, RDP (диалекты rdesktop и xfreerdp),
+  VNC, Proxmox VE, произвольные команды и локальная оболочка.
+- **Встроенные RDP- и VNC-клиенты:** на базе FreeRDP 3 и libvncclient, с
+  полноэкранным режимом, звуком (rdpsnd), передачей файлов через буфер обмена и
+  пробросом дисков в RDP.
+- **Автоматизация:** Expect-подобные промпты, переподключения, jump hosts,
+  HTTP/SOCKS-прокси, кластеры и управление питанием кластеров (PCC).
+- **Учётные данные:** шифрование legacy `asbru.yml`, базы KeePass, пароли в GUI
+  и интеграция с Secret Service.
+- **Рабочий процесс:** группы/дерево, редактор подключений, настройки, горячие
+  клавиши, импорт/экспорт, журналы сессий, wake-on-LAN, команды запуска, значок
+  в трее, панели.
+- **Совместимость:** читает и пишет `asbru.yml`, созданные asbru-cm (включая
+  зашифрованные поля); неизвестные ключи сохраняются без изменений.
+- **CLI:** `asbru-go gui`, `asbru-go version`, `--config-dir`, `--debug`.
+
+## Сборка
+
+Требования: Go 1.27+, Qt6 (Widgets), qtermwidget6, FreeRDP 3, libvncclient и
+C/C++-тулчейн для cgo.
+
+В Arch Linux:
 
 ```bash
 sudo pacman -S --needed base-devel go qt6-base qtermwidget freerdp libvncserver
-go build -trimpath -ldflags "-s -w" -o asbru ./cmd/asbru
+go build -trimpath -ldflags "-s -w" -o asbru-go ./cmd/asbru
 ```
 
-If `/tmp` is a small tmpfs, keep the Go build temp directory on disk:
+Если `/tmp` — небольшой tmpfs, держите временный каталог сборки Go на диске:
 
 ```bash
 mkdir -p .gotmp
-GOTMPDIR="$PWD/.gotmp" go build -trimpath -ldflags "-s -w" -o asbru ./cmd/asbru
+GOTMPDIR="$PWD/.gotmp" go build -trimpath -ldflags "-s -w" -o asbru-go ./cmd/asbru
 ```
 
-## Run
+## Запуск
 
 ```bash
-./asbru gui
+./asbru-go gui
 ```
 
-The configuration lives in `~/.config/asbru/asbru.yml`. Override it with
-`ASBRU_CFG=/path/to/dir` or `--config-dir`.
+Конфигурация хранится в `~/.config/asbru/asbru.yml`. Переопределить её можно
+переменной `ASBRU_CFG=/path/to/dir` или флагом `--config-dir`.
 
-## Install
+## Установка
 
-An AUR package recipe is provided in [`packaging/aur/PKGBUILD`](packaging/aur/PKGBUILD):
+В репозитории есть рецепт для AUR:
+[`packaging/aur/PKGBUILD`](packaging/aur/PKGBUILD):
 
 ```bash
 cd packaging/aur
 makepkg -si
 ```
 
-It installs `/usr/bin/asbru`, the desktop entry, the application icons and the
-Russian translation, and declares `conflicts`/`provides` for `asbru-cm` (the
-Perl/GTK application), because both provide the `asbru` binary and desktop name.
+Пакет устанавливает `/usr/bin/asbru-go`, ярлык рабочего стола, иконки и русский
+перевод. Он не конфликтует с asbru-cm: бинарник и `.desktop` называются
+`asbru-go`, поэтому обе программы можно держать установленными одновременно.
+Обе программы используют общий каталог конфигурации `~/.config/asbru` (файл
+`asbru.yml`), что обеспечивает совместимость настроек.
 
-## License and attribution
+## Лицензия и авторство
 
 asbru-go is free software: you can redistribute it and/or modify it under the
 terms of the **GNU General Public License, version 3 or later** (see
@@ -89,10 +122,11 @@ notices and GPL license are preserved; this notice is the statement of
 modification required by GPLv3 §5(a). The complete corresponding source of this
 version is this repository.
 
-## Known limitations
+## Известные ограничения
 
-- Some legacy features are still in progress: the PACScripts engine and parts of
-  the connection menu.
-- Embedded RDP/VNC is new and under live validation. External viewers
-  (`xfreerdp`, `rdesktop`, `vncviewer`) remain available as fallbacks.
-- The Proxmox VE integration is experimental.
+- Некоторые legacy-возможности ещё в работе: движок PACScripts и часть меню
+  подключений.
+- Встроенные RDP/VNC — новые и находятся в процессе живой проверки. Внешние
+  клиенты (`xfreerdp`, `rdesktop`, `vncviewer`) остаются доступны как запасной
+  вариант.
+- Интеграция с Proxmox VE экспериментальная.
